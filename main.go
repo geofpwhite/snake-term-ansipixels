@@ -5,7 +5,7 @@ import (
 
 	"fortio.org/terminal/ansipixels"
 	"fortio.org/terminal/ansipixels/tcolor"
-	"github.com/geofpwhite/snaketerm/snake"
+	"github.com/geofpwhite/snake-term-ansipixels/snake"
 )
 
 func main() {
