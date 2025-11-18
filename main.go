@@ -13,6 +13,11 @@ func main() {
 	flag.Parse()
 	ap := ansipixels.NewAnsiPixels(*fps)
 	ap.Open()
+	defer func() {
+		ap.Restore()
+		ap.ShowCursor()
+		ap.MoveCursor(0, 0)
+	}()
 	ap.HideCursor()
 	ap.ClearScreen()
 	s := snake.NewSnake(ap.W, ap.H)
