@@ -18,7 +18,6 @@ func main() {
 	}
 	ap := ansipixels.NewAnsiPixels(*fps)
 	err := ap.Open()
-	ap.SyncBackgroundColor()
 	if err != nil {
 		panic("error opening terminal")
 	}
@@ -27,6 +26,7 @@ func main() {
 		ap.ShowCursor()
 		ap.MoveCursor(0, 0)
 	}()
+	ap.SyncBackgroundColor()
 	ap.HideCursor()
 	ap.ClearScreen()
 	h := ap.H
