@@ -10,7 +10,6 @@ import (
 func main() {
 	fps := flag.Float64("fps", 60, "set fps")
 	halfFlag := flag.Bool("square", false, "use half height blocks so the snake's body is more square")
-
 	flag.Parse()
 	draw := drawFull
 	if *halfFlag {
