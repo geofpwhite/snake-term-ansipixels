@@ -38,24 +38,7 @@ func main() {
 			return false
 		}
 		if len(ap.Data) >= 3 {
-			switch ap.Data[2] {
-			case 65:
-				if s.dir == R || s.dir == L {
-					s.dir = U
-				}
-			case 66:
-				if s.dir == R || s.dir == L {
-					s.dir = D
-				}
-			case 67:
-				if s.dir == U || s.dir == D {
-					s.dir = R
-				}
-			case 68:
-				if s.dir == U || s.dir == D {
-					s.dir = L
-				}
-			}
+			handleInput(s, ap.Data[2])
 		}
 		ap.ClearScreen()
 		if !s.next() {
@@ -64,6 +47,27 @@ func main() {
 		draw(ap, s)
 		return true
 	})
+}
+
+func handleInput(s *snake, dataValue byte) {
+	switch dataValue {
+	case 65:
+		if s.dir == R || s.dir == L {
+			s.dir = U
+		}
+	case 66:
+		if s.dir == R || s.dir == L {
+			s.dir = D
+		}
+	case 67:
+		if s.dir == U || s.dir == D {
+			s.dir = R
+		}
+	case 68:
+		if s.dir == U || s.dir == D {
+			s.dir = L
+		}
+	}
 }
 
 func drawFull(ap *ansipixels.AnsiPixels, s *snake) {

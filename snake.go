@@ -1,3 +1,4 @@
+//nolint:gosec //we don't need cryptographically secure randomness
 package main
 
 import (
@@ -36,7 +37,14 @@ func newSnake(mx, my int) *snake {
 	m := make(map[coords]bool)
 	m[coords{mx / 2, my / 2}] = true
 	d := U
-	s := snake{snake: snak, food: coords{rand.IntN(mx), rand.IntN(my)}, maxX: mx, maxY: my, dir: d, m: m}
+	s := snake{
+		snake: snak, food: coords{
+			rand.IntN(mx),
+			rand.IntN(my),
+		},
+		maxX: mx,
+		maxY: my, dir: d, m: m,
+	}
 	return &s
 }
 
@@ -44,7 +52,10 @@ func (s *snake) next() bool {
 	length := len(s.snake)
 	dir := s.dir
 	changed := directionCoords[dir]
-	next := coords{(s.snake[length-1].X + changed.X) % s.maxX, (s.snake[length-1].Y + changed.Y) % s.maxY}
+	next := coords{
+		X: (s.snake[length-1].X + changed.X) % s.maxX,
+		Y: (s.snake[length-1].Y + changed.Y) % s.maxY,
+	}
 	if next.X < 0 {
 		next.X += s.maxX
 	}
